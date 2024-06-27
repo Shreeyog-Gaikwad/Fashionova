@@ -8,7 +8,7 @@ const getDefaultCart = ()=>{
     for (let index = 1; index < all_products.length; index++) {
         cart[index] = 0;
     }
-    return cart;
+    return cartt;
 }
 
 const ShopContextProvider = (props) =>{
