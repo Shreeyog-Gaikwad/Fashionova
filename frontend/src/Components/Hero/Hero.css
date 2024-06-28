@@ -49,12 +49,12 @@ a {
 }
 
 .hero-right{
-    width: 55vw;
-    height: 77vh;
+    width: 70vw;
+    height: 67vh;
     flex: 1;
     display:flex ;
-    align-items: center;
-    justify-content: center;
+    align-items:center;
+    justify-content:baseline;
 }
 
 .hero-right img{
