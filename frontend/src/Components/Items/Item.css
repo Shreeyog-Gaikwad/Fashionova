@@ -67,6 +67,7 @@
     }
     .item img{
         width: 120px;
+        border-radius: 30px;
     }
     .item-price-old{
         font-size: 12px;
@@ -81,3 +82,4 @@
         width: 160px;
     }
 }
+
