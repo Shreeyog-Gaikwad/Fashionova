@@ -110,7 +110,7 @@
     }
     .nav-menu{
         gap: 30px;
-        font-size: 16px;
+        font-size: 20px;
     }
     .nav-login-cart{
         gap: 30px;
@@ -132,7 +132,7 @@
     }
     .nav-menu{
         gap: 25px;
-        font-size: 14px;
+        font-size: 16px;
     }
     .nav-login-cart button{
         width: 80px;
@@ -150,7 +150,10 @@
 
 @media(max-width:800px){
     .navbar{
-        padding: 10px 0px;
+        padding: 10px 20px;
+    }
+    .nav-logo{
+        padding-left: 20px;
     }
     .nav-dropdown{
         display: block;
@@ -161,12 +164,16 @@
     .nav-menu{
         display: none;
         height: 40px;
-        width: 95%;
+        width: 91%;
         position: absolute;
         background-color: antiquewhite;
         justify-content: center;
-        top: 97px;
-        margin-left: -396px;
+        top: 96px;
+        margin-left: -51%;
+    }
+    .nav-menu li{
+        align-items: center;
+        justify-content: center;
     }
     .nav-menu-visible{
         display: flex;
@@ -176,7 +183,7 @@
     }
 }
 
-@media(max-width:800px){
+@media(max-width:500px){
     .navbar{
         width: 8px 0px;
         gap: 0;
@@ -193,12 +200,16 @@
     .nav-menu{
         display: none;
         height: 40px;
-        width: 123%;
+        width: 92%;
         position: absolute;
         background-color: antiquewhite;
         justify-content: center;
         top: 97px;
-        margin-left: -396px;
+        margin-left: -51%;
+    }
+    .nav-menu li{
+        align-items: center;
+        justify-content: center;
     }
     .nav-menu-visible{
         display: flex;
