@@ -23,7 +23,7 @@
 .popular-item{
     margin-top: 50px;
     display: flex;
-    gap: 80px;
+    gap: 60px;
 }
 
 @media(max-width:1280px){
