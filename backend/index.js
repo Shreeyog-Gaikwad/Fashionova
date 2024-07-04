@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(cors());  
 
 // Database Connectivity by Mongodb
-//Remaining............................................
+//Remaining.............................................
 
 //API creation
 
