@@ -5,9 +5,8 @@ const mongoose = require("mongoose");
 const multer = require("multer");
 const cors = require("cors");
 const path = require("path");
-const { type } = require("os");
 const a = require("./target");
-const { error } = require("console");
+
 
 const app = express();
 
