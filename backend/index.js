@@ -212,6 +212,13 @@ app.get('/newcollections',async function(req,res){
     res.send(newcollection);
 })
 
+app.get('/popularinwomens',async function(req,res){
+    let products = await Product.find({category:"women"});
+    let popular = products.slice(0,4);
+    console.log("Popular in Womens Added");
+    res.send(popular);
+})
+
 
 app.listen(port, (error) => {
     if (!error) {
