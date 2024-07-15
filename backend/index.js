@@ -186,39 +186,82 @@ app.post('/login', async function (req, res) {
     let user = await Users.findOne({ email: req.body.email });
     if (user) {
         const passCompare = req.body.password === user.password;
-        if(passCompare){
-            const data= {
-                user : {
-                    id:user.id
+        if (passCompare) {
+            const data = {
+                user: {
+                    id: user.id
                 }
             }
             const token = jwt.sign(data, "secret_ecom");
-            res.json({success:true, token});
+            res.json({ success: true, token });
         }
-        else{
-            res.json({success:false,errors:"Wrong Password!!"});
+        else {
+            res.json({ success: false, errors: "Wrong Password!!" });
         }
     }
-    else{
-        res.json({success:false, errors:"Wrong Email Id!!"});
+    else {
+        res.json({ success: false, errors: "Wrong Email Id!!" });
     }
 })
 
-
-app.get('/newcollections',async function(req,res){
+// API Endpoint for Displaying New Collections
+app.get('/newcollections', async function (req, res) {
     let products = await Product.find({});
     let newcollection = products.slice(1).slice(-8);
     console.log("New Collection Added");
     res.send(newcollection);
 })
 
-app.get('/popularinwomens',async function(req,res){
-    let products = await Product.find({category:"women"});
-    let popular = products.slice(0,4);
+// API Endpoint for Displaying Popular in Womens
+app.get('/popularinwomens', async function (req, res) {
+    let products = await Product.find({ category: "women" });
+    let popular = products.slice(0, 4);
     console.log("Popular in Womens Added");
     res.send(popular);
 })
 
+// Middleware for getting user.
+const fetchUser = async (req, res, next) => {
+    const token = req.header('auth-token');
+    if (!token) {
+        res.status(401).send({ errors: "Please Authenticate using valid token" });
+    }
+    else {
+        try {
+            const data = jwt.verify(token, "secret_ecom");
+            req.user = data.user;
+            next();
+        } catch (error) {
+            res.status(401).send({ errors: "Please Authenticate using valid token" });
+        }
+    }
+}
+
+// API endpoint for adding products in cart.
+app.post("/addtocart", fetchUser, async (req, res) => {
+    console.log("Added", req.body.itemId);
+    let userData = await Users.findOne({ _id: req.user.id });
+    userData.cartData[req.body.itemId] += 1;
+    await Users.findOneAndUpdate({ _id: req.user.id }, { cartData: userData.cartData });
+    res.send("Added");
+})
+
+// API Endpoint to remove the product from cart.
+app.post('/removefromcart', fetchUser, async function (req, res) {
+    console.log("Removed", req.body.itemId);
+    let userData = await Users.findOne({ _id: req.user.id });
+    if(userData.cartData[req.body.itemId] > 0)
+    userData.cartData[req.body.itemId] -= 1;
+    await Users.findOneAndUpdate({ _id: req.user.id }, { cartData: userData.cartData });
+    res.send("Removed");
+})
+
+// API Endpoint for getting the cart data.
+app.post('/getcart', fetchUser, async (req,res) =>{
+    console.log("Getcart");
+    let userData = await Users.findOne({ _id: req.user.id });
+    res.json(userData.cartData);
+})
 
 app.listen(port, (error) => {
     if (!error) {

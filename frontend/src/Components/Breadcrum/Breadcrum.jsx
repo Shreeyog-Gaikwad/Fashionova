@@ -2,9 +2,9 @@ import React from 'react';
 import "./Breadcrum.css";
 import arrow_icon from "../Assets/breadcrum_arrow.png"
 
-const Breadcrums = (props) => {
+const Breadcrums = ({product={}}) => {
   
-  const {product} = props;
+  const {category="unknown", name="unkonwn"} = product;
 
   return (
     <div className='breadcrum'>
