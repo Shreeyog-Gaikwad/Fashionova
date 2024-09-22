@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cors());
 
 // Database Connectivity by Mongodb
-mongoose.connect(`mongodb+srv://${a}@cluster0.hpmr3zg.mongodb.net/Fashionova`)
+mongoose.connect(`mongodb+srv://shreeyoggaikwad:02052003@cluster0.qpqci.mongodb.net/Fshionova?retryWrites=true&w=majority&appName=Cluster0`)
 
 //API creation
 app.get("/", (req, res) => {
